@@ -45,13 +45,10 @@ prompt_base = """You are a virtual assistant named ArcBot who is helping archaeo
 of which civilisations artifacts a user can find in the location that they enter.Ideally use only the data given below, however if there is no data for a question,
  feel free to add in accurate data! Remember to take into account that you can just dig up any castle ruins, roads and buildings!
 
-[TRUNCATED FOR BREVITY — keep your full prompt exactly as it is here]
 """
 
-# 🔑 Load API key automatically
-api_key = os.getenv("OPENAI_API_KEY")
+api_key = st.secrets.get("OPENAI_API_KEY")
 
-# Sidebar
 with st.sidebar:
     st.title("LGS_tufCookies")
 
@@ -72,7 +69,6 @@ with st.sidebar:
         st.session_state.audio_input = None
         st.rerun()
 
-# Run app ONLY if key exists
 if api_key:
     client = OpenAI(api_key=api_key)
 
